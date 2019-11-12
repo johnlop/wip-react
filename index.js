@@ -1,4 +1,4 @@
-import { createElement, useState, useRef } from "./wip.js ";
+import { createElement, useState, useRef, useEffect } from "./wip.js ";
 import wipDom from "./wip-dom.js";
 
 function Button({ label, click }) {
@@ -14,8 +14,11 @@ function Button({ label, click }) {
 function App() {
   const [title, setTitle] = useState("Work in progress");
   const [count, setCount] = useState(1);
-
   const off = useRef(false);
+
+  useEffect(() => {
+    console.log("effect used");
+  }, [title]);
 
   const increase = () => {
     !off.current && setCount(count + 1);

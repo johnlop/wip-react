@@ -1,6 +1,23 @@
 let hooks = [];
 let idx = 0;
 
+export function useEffect(callback, deps) {
+  const prevDeps = hooks[idx];
+  let hasChanged = true;
+
+  if (prevDeps) {
+    hasChanged = deps.some((dep, idx) => {
+      return !Object.is(dep, prevDeps[idx]);
+    });
+  }
+
+  if (hasChanged) {
+    callback();
+  }
+
+  hooks[idx] = deps;
+}
+
 export function useState(initialValue) {
   const state = hooks[idx] || initialValue;
   const _idx = idx;

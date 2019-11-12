@@ -22,3 +22,9 @@ export function useRef(initialValue) {
     return dispatcher.useRef(initialValue);
   }
 }
+
+export function useEffect(callback, deps) {
+  if (dispatcher) {
+    return dispatcher.useEffect(callback, deps);
+  }
+}
