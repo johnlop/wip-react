@@ -1,4 +1,4 @@
-import { createElement, useState } from "./wip.js ";
+import { createElement, useState, useRef } from "./wip.js ";
 import wipDom from "./wip-dom.js";
 
 function Button({ label, click }) {
@@ -13,19 +13,31 @@ function Button({ label, click }) {
 
 function App() {
   const [title, setTitle] = useState("Work in progress");
+  const [count, setCount] = useState(1);
 
-  console.log(`App invoked, title is: ${title}`);
+  const off = useRef(false);
 
-  const changeTitle = () => {
-    setTitle("New title");
+  const increase = () => {
+    !off.current && setCount(count + 1);
   };
+  const shutDown = () => {
+    off.current = true;
+  };
+
+  console.log("rerender");
+  console.log(`off is ${off.current}`);
 
   return createElement(
     "div",
     null,
     createElement("h1", null, title),
-    createElement(Button, { label: "click", click: changeTitle }),
-    createElement(Button, { label: "reset" }),
+    createElement("h1", null, count.toString()),
+    createElement(Button, { label: "+", click: increase }),
+    createElement(Button, { label: "off", click: shutDown }),
+    createElement(Button, {
+      label: "change title",
+      click: () => setTitle("new title"),
+    }),
   );
 }
 

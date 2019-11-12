@@ -16,3 +16,9 @@ export function useState(initialValue) {
     return dispatcher.useState(initialValue);
   }
 }
+
+export function useRef(initialValue) {
+  if (dispatcher) {
+    return dispatcher.useRef(initialValue);
+  }
+}

@@ -1,5 +1,6 @@
-import { useState } from "./wip-dom.js";
+import { useState, useRef } from "./wip-dom.js";
 
 export default {
   useState,
+  useRef,
 };
