@@ -1,0 +1,26 @@
+{
+    "extends": [
+        "react-app",
+        "airbnb",
+        "plugin:prettier/recommended",
+        "prettier/react"
+    ],
+    "plugins": ["aw"],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src/"]
+            }
+        }
+    },
+
+    "rules": {
+        "no-plusplus": "off",
+        "arrow-body-style": "off",
+        "prefer-arrow-callback": "error",
+        "react/jsx-filename-extension": "off",
+        "aw/no-calls-as-function-arguments": 1,
+        "aw/no-calls-in-if-statements": 1,
+        "aw/no-relative-imports": 1
+    }
+}
