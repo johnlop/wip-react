@@ -28,3 +28,15 @@ export function useEffect(callback, deps) {
     return dispatcher.useEffect(callback, deps);
   }
 }
+
+export function memo(fn) {
+  const cache = Object.create(null);
+
+  return function(...args) {
+    const key = JSON.stringify(args);
+    if (!cache[key]) {
+      cache[key] = fn(...args);
+    }
+    return cache[key];
+  };
+}
